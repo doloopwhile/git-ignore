@@ -54,10 +54,10 @@ EOS
 # (Command) Print ignore patterns
 #
 list() {
-    cat ~/.gitignore   | grep -v '^\s*$' | sed -e "s/^/\(global\) /g"
-    cat "${git_dir}/info/exclude" | grep -v '^\s*$' | sed -e "s|^|\(GIT_DIR/info/exclude\) |g"
+    cat ~/.gitignore   | grep -v '^\s*$' | grep -v '^\s*#' | sed -e "s/^/\(global\) /g"
+    cat "${git_dir}/info/exclude" | grep -v '^\s*$' | grep -v '^\s*#' | sed -e "s|^|\(GIT_DIR/info/exclude\) |g"
     if [ -f "${gitignore}" ] ; then
-      cat "${gitignore}" | grep -v '^\s*$' | sed -e "s/^/\(local\)  /g"
+      cat "${gitignore}" | grep -v '^\s*$' | grep -v '^\s*#' | sed -e "s/^/\(local\)  /g"
     fi
 }
 
