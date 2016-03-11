@@ -68,7 +68,7 @@ add() {
     target="${gitignore}"
     if [ ${global} -eq 1 ] ; then
         target="${HOME}/.gitignore"
-    elif [ ${info_exclude} -eq 1 ]; then
+    elif [ "${info_exclude}" -eq 1 ]; then
         target="${git_dir}/info/exclude"
     else
         if [ -z "${work_dir}" ] ; then
@@ -220,12 +220,14 @@ remove_pattern() {
 
 patterns=()
 global=0
+info_exclude=0
 
 # parse options/command/patterns
 for o in $*
 do
   case "${o}" in
     -g|--global)               global=1   ;;
+    --info-exclude)            info_exclude=1   ;;
     help|add|remove|list|pull) cmd="${o}" ;;
     * )                        patterns+=("${o}")
   esac
